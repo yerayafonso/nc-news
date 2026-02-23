@@ -24,3 +24,16 @@
   padding: none;
   margin: none;
 }
+
+.comment-card {
+  border: 2px solid red;
+  margin: 10px;
+  background: wheat;
+  border-radius: 25px;
+}
+
+.comment-card-details {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 15px;
+}
