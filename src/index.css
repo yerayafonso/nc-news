@@ -2,9 +2,11 @@
   display: flex;
   border: 2px solid red;
   margin: 10px;
+  background: wheat;
+  border-radius: 25px;
 }
 
-.article-card > a {
+.article-img {
   height: 200px;
   width: 200px;
   margin: auto 25px;

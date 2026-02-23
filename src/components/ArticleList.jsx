@@ -1,10 +1,11 @@
 // import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import ArticleCard from "./ArticleCard";
+import { useState } from "react";
 
-function ArticleList(props) {
-  let articleData = props.articleData;
-  const setArticleData = props.setArticleData;
+function ArticleList() {
+  const [articleData, setArticleData] = useState([]);
+
   useEffect(() => {
     async function fetchArticles() {
       const response = await fetch(
@@ -13,12 +14,10 @@ function ArticleList(props) {
       const articleJson = await response.json();
       const { articles } = articleJson;
       setArticleData(articles);
-      console.log("inside fetch", articleData);
     }
     fetchArticles();
-    console.log("articles inside useEffect", articleData);
   }, []);
-  console.log("articles outside", articleData);
+
   return (
     <div>
       {articleData.map((object) => {
