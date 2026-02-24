@@ -9,6 +9,9 @@ import ArticleList from "./components/ArticleList";
 // import { useState } from "react";
 import SingleArticle from "./components/SingleArticle";
 import Comments from "./components/Comments";
+import PostComment from "./components/PostComment";
+import Users from "./components/Users";
+import SingleUser from "./components/SingleUser";
 
 function App() {
   return (
@@ -20,6 +23,12 @@ function App() {
         <Route path="/articles" element={<ArticleList />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/articles/:article_id/comments" element={<Comments />} />
+        <Route
+          path="/articles/:article_id/comments/post"
+          element={<PostComment />}
+        />
+        <Route path="/users" element={<Users />} />
+        <Route path="/users/:username" element={<SingleUser />} />
       </Routes>
     </>
   );

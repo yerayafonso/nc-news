@@ -10,6 +10,9 @@ function Nav() {
         <li>
           <Link to="/articles">Articles</Link>
         </li>
+        <li>
+          <Link to="/users">Users</Link>
+        </li>
       </ul>
     </nav>
   );

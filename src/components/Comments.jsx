@@ -28,6 +28,9 @@ function Comments() {
           <Link to={`/articles/${article_id}`}>
             <button>Back</button>
           </Link>
+          <Link to={`/articles/${article_id}/comments/post`}>
+            <button>Post</button>
+          </Link>
         </div>
         <div>
           {commentsData.map((object) => {

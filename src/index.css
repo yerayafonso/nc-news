@@ -1,4 +1,4 @@
-.article-card {
+.article-card .user-card {
   display: flex;
   border: 2px solid red;
   margin: 10px;
@@ -6,13 +6,13 @@
   border-radius: 25px;
 }
 
-.article-img {
+.article-img .user-img {
   height: 200px;
   width: 200px;
   margin: auto 25px;
 }
 
-.article-card-details {
+.article-card-details .user-card-details {
   list-style: none;
   padding-left: 0;
   margin-left: 15px;
