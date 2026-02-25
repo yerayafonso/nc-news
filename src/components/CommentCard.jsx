@@ -8,8 +8,8 @@ function CommentCard(props) {
 
   return (
     <>
-      <div className="comment-card">
-        <ul className="comment-card-details">
+      <div className="card">
+        <ul className="card-details">
           <li>
             <p>Body: {body}</p>
           </li>

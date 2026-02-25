@@ -13,9 +13,9 @@ function ArticleCard(props) {
   return (
     <>
       <Link to={`/articles/${articleId}`}>
-        <div className="article-card">
-          <img src={articleImg} className="article-img" />
-          <ul className="article-card-details">
+        <div className="card">
+          <img src={articleImg} className="image" />
+          <ul className="card-details">
             <li>
               <p>ID: {articleId}</p>
             </li>

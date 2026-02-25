@@ -1,21 +1,55 @@
-import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+import { UserContext } from "../context/User";
+
+import { useState } from "react";
+import CommentStatus from "./CommentStatus";
 
 function PostComment() {
   const { article_id } = useParams();
+  const { loggedInUser } = useContext(UserContext);
+  const [submitComment, setSubmitComment] = useState("");
+
+  const formEndpoint = `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}/comments`;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = e.target.body.value;
+    console.log("formdata", formData);
+    const inputData = { username: loggedInUser.username, body: formData };
+    try {
+      const response = await fetch(formEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputData),
+      });
+
+      // const postData = await response.json();
+
+      if (response.ok) {
+        setSubmitComment("success");
+      } else {
+        setSubmitComment("error");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <>
-      <form action={`/articles/${article_id}/comments`} method="post">
-        <label htmlFor="topic-dropdown">topic:</label>
-        <select id="topic-dropdown">
-          <option>coding</option>
-          <option>football</option>
-          <option>cooking</option>
-        </select>
+      <Link to={`/articles/${article_id}/comments`}>
+        <button>Back</button>
+      </Link>
+      <p>Username: {loggedInUser.username}</p>
+      <form action={formEndpoint} method="post" onSubmit={handleSubmit}>
         <label htmlFor="comment-text">Body:</label>
-        <textarea id="comment-text" type="text"></textarea>
-        <button type="submit">post</button>
+        <textarea id="comment-text" name="body" type="text" required />
+        <input type="submit" value="post" />
       </form>
+      <CommentStatus submitComment={submitComment} />
     </>
   );
 }

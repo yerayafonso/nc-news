@@ -99,9 +99,9 @@ function SingleArticle() {
           </Link>
         </div>
         <div>
-          <div className="article-card">
-            <img src={articleImg} className="article-img" />
-            <ul className="article-card-details">
+          <div className="card">
+            <img src={articleImg} className="image" />
+            <ul className="card-details">
               <li>
                 <p>Title: {title}</p>
               </li>

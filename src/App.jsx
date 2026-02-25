@@ -12,10 +12,11 @@ import Comments from "./components/Comments";
 import PostComment from "./components/PostComment";
 import Users from "./components/Users";
 import SingleUser from "./components/SingleUser";
+import { UserProvider } from "./context/User";
 
 function App() {
   return (
-    <>
+    <UserProvider>
       <Header />
       <Nav />
       <Routes>
@@ -30,7 +31,7 @@ function App() {
         <Route path="/users" element={<Users />} />
         <Route path="/users/:username" element={<SingleUser />} />
       </Routes>
-    </>
+    </UserProvider>
   );
 }
 

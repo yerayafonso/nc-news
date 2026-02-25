@@ -16,9 +16,9 @@ function Users() {
   }, []);
   console.log(userData);
   return (
-    <div>
+    <div className="user-list">
       {userData.map((object) => {
-        return <UserCard userObj={object} />;
+        return <UserCard userObj={object} key={object.username} />;
       })}
     </div>
   );

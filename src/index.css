@@ -1,4 +1,4 @@
-.article-card .user-card {
+.card {
   display: flex;
   border: 2px solid red;
   margin: 10px;
@@ -6,26 +6,26 @@
   border-radius: 25px;
 }
 
-.article-img .user-img {
+.image {
   height: 200px;
   width: 200px;
   margin: auto 25px;
 }
 
-.article-card-details .user-card-details {
+.card-details {
   list-style: none;
   padding-left: 0;
   margin-left: 15px;
   border: 2px solid pink;
 }
 
-.article-card-details > li {
+.card-details > li {
   border: 2px solid green;
   padding: none;
   margin: none;
 }
 
-.comment-card {
+/* .comment-card {
   border: 2px solid red;
   margin: 10px;
   background: wheat;
@@ -36,4 +36,102 @@
   list-style: none;
   padding-left: 0;
   margin-left: 15px;
+} */
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-card {
+  border: 2px solid red;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 10px;
+}
+
+.user-card-details {
+  list-style: none;
+  text-align: center;
+}
+
+.user-image {
+  margin: auto;
+  height: 150px;
+}
+
+.single-user-img {
+  margin: auto;
+  height: 150px;
+}
+
+.login-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 3px solid blue;
+}
+
+/* Popup container */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

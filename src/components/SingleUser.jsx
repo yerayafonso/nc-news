@@ -12,19 +12,21 @@ function SingleUser() {
       );
       const userJson = await response.json();
       const { user } = userJson;
-      setSingleUser(user);
+      setSingleUser(user[0]);
     }
     fetchUser();
   }, []);
+
+  // console.log("single user", singleUser[0]);
 
   //   const user_name = singleUser.username;
   const name = singleUser.name;
   const avatar = singleUser.avatar_url;
 
   return (
-    <div className="user-card">
-      <img src={avatar} className="user-img" />
-      <ul className="user-card-details">
+    <div className="single-user-card">
+      <img src={avatar} className="single-user-img" />
+      <ul className="single-user-card-details">
         <li>
           <p>Username: {username}</p>
         </li>
