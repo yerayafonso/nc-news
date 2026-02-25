@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import UserCard from "./UserCard";
+import Loading from "./Loading";
 
 function Users() {
   const [userData, setUserData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchUsers() {
@@ -12,9 +14,20 @@ function Users() {
       const userJson = await response.json();
       setUserData(userJson);
     }
-    fetchUsers();
+    try {
+      fetchUsers();
+      setIsLoading(false);
+    } catch (err) {
+      console.error(err);
+      setIsLoading(false);
+    }
   }, []);
   console.log(userData);
+
+  if (isLoading === true) {
+    return <Loading />;
+  }
+
   return (
     <div className="user-list">
       {userData.map((object) => {

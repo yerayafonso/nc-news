@@ -3,14 +3,16 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import CommentCard from "./CommentCard";
 import { UserContext } from "../context/User";
+import Loading from "./Loading";
 
 function Comments() {
   const [commentsData, setCommentsData] = useState([]);
   const { article_id } = useParams();
   const { loggedInUser } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchArticles() {
+    async function fetchComments() {
       const response = await fetch(
         `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}/comments`,
       );
@@ -18,14 +20,17 @@ function Comments() {
       const { comments } = commentsJson;
       setCommentsData(comments);
     }
-    fetchArticles();
+    try {
+      fetchComments();
+      setIsLoading(false);
+    } catch (err) {
+      console.error(err);
+      setIsLoading(false);
+    }
   }, []);
 
-  // const handleClick = () => {};
-
-  function myFunction() {
-    const popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
@@ -39,26 +44,10 @@ function Comments() {
           <Link to={`/articles/${article_id}/comments/post`}>
             <button>Post</button>
           </Link>
-          {/* <Link
-            to={`/articles/${article_id}/comments/post`}
-            onClick={(e) => {
-              if (loggedInUser.username === "Not Loggged In") {
-                e.preventDefault();
-                myFunction();
-              }
-            }}
-          >
-            <div class="popup">
-              Click me!
-              <span class="popuptext" id="myPopup">
-                Please Log in
-              </span>
-              {<button onClick={handleClick}>Post</button> *
-          </Link> */}
         </div>
         <div>
           {commentsData.map((object) => {
-            return <CommentCard commentObj={object} />;
+            return <CommentCard commentObj={object} key={object.comment_id} />;
           })}
         </div>
       </main>
