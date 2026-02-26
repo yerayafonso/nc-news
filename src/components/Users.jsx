@@ -8,19 +8,20 @@ function Users() {
 
   useEffect(() => {
     async function fetchUsers() {
-      const response = await fetch(
-        "https://nc-news-app-5h3i.onrender.com/api/users",
-      );
-      const userJson = await response.json();
-      setUserData(userJson);
+      try {
+        const response = await fetch(
+          "https://nc-news-app-5h3i.onrender.com/api/users",
+        );
+        const userJson = await response.json();
+        setUserData(userJson);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     }
-    try {
-      fetchUsers();
-      setIsLoading(false);
-    } catch (err) {
-      console.error(err);
-      setIsLoading(false);
-    }
+
+    fetchUsers();
   }, []);
   console.log(userData);
 

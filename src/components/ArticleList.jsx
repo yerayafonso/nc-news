@@ -7,26 +7,37 @@ import Loading from "./Loading";
 function ArticleList() {
   const [articleData, setArticleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [order, setOrder] = useState("DESC");
+
+  const handleSortChange = (e) => {
+    setSortBy(e.target.value);
+  };
+
+  const handleOrderChange = (e) => {
+    setOrder(e.target.value);
+  };
 
   console.log(isLoading);
 
   useEffect(() => {
     async function fetchArticles() {
-      const response = await fetch(
-        "https://nc-news-app-5h3i.onrender.com/api/articles",
-      );
-      const articleJson = await response.json();
-      const { articles } = articleJson;
-      setArticleData(articles);
+      try {
+        const response = await fetch(
+          `https://nc-news-app-5h3i.onrender.com/api/articles?sort_by=${sortBy}&order=${order}`,
+        );
+        const articleJson = await response.json();
+        const { articles } = articleJson;
+        setArticleData(articles);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     }
-    try {
-      fetchArticles();
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+
+    fetchArticles();
+  }, [sortBy, order]);
 
   if (isLoading === true) {
     return <Loading />;
@@ -34,6 +45,27 @@ function ArticleList() {
   console.log(isLoading);
   return (
     <div>
+      <div>
+        <select name="sortByQuery" onChange={handleSortChange}>
+          <option value="author"> Author</option>
+          <option value="title"> Title</option>
+          <option value="article_id"> Article ID</option>
+          <option value="topic"> Topic</option>
+          <option value="created_at" selected>
+            {" "}
+            Time Posted
+          </option>
+          <option value="votes"> Votes</option>
+          <option value="comment_count"> Comments</option>
+        </select>
+
+        <select name="orderByQuery" onChange={handleOrderChange}>
+          <option value="ASC">Ascending</option>
+          <option value="DESC" selected>
+            Descending
+          </option>
+        </select>
+      </div>
       {articleData.map((object) => {
         return <ArticleCard articleObj={object} key={object.article_id} />;
       })}

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import CommentCard from "./CommentCard";
@@ -8,25 +8,26 @@ import Loading from "./Loading";
 function Comments() {
   const [commentsData, setCommentsData] = useState([]);
   const { article_id } = useParams();
-  const { loggedInUser } = useContext(UserContext);
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchComments() {
-      const response = await fetch(
-        `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}/comments`,
-      );
-      const commentsJson = await response.json();
-      const { comments } = commentsJson;
-      setCommentsData(comments);
+      try {
+        const response = await fetch(
+          `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}/comments`,
+        );
+        const commentsJson = await response.json();
+        const { comments } = commentsJson;
+        setCommentsData(comments);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     }
-    try {
-      fetchComments();
-      setIsLoading(false);
-    } catch (err) {
-      console.error(err);
-      setIsLoading(false);
-    }
+
+    fetchComments();
   }, []);
 
   if (isLoading) {

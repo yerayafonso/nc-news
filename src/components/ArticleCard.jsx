@@ -9,6 +9,7 @@ function ArticleCard(props) {
   const createdAt = articleObj.created_at;
   const title = articleObj.title;
   const topic = articleObj.topic;
+  const commentCount = articleObj.comment_count;
 
   return (
     <>
@@ -30,6 +31,9 @@ function ArticleCard(props) {
             </li>
             <li>
               <p>Posted: {createdAt}</p>
+            </li>
+            <li>
+              <p>No. of Comments: {commentCount}</p>
             </li>
           </ul>
         </div>
