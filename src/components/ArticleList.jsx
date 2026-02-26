@@ -46,24 +46,27 @@ function ArticleList() {
   return (
     <div>
       <div>
-        <select name="sortByQuery" onChange={handleSortChange}>
+        <select
+          name="sortByQuery"
+          onChange={handleSortChange}
+          defaultValue="created_at"
+        >
           <option value="author"> Author</option>
           <option value="title"> Title</option>
-          <option value="article_id"> Article ID</option>
-          <option value="topic"> Topic</option>
-          <option value="created_at" selected>
-            {" "}
-            Time Posted
-          </option>
+
+          <option value="topic">Topic</option>
+          <option value="created_at"> Time Posted</option>
           <option value="votes"> Votes</option>
           <option value="comment_count"> Comments</option>
         </select>
 
-        <select name="orderByQuery" onChange={handleOrderChange}>
+        <select
+          name="orderByQuery"
+          onChange={handleOrderChange}
+          defaultValue="DESC"
+        >
           <option value="ASC">Ascending</option>
-          <option value="DESC" selected>
-            Descending
-          </option>
+          <option value="DESC">Descending</option>
         </select>
       </div>
       {articleData.map((object) => {

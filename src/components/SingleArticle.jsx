@@ -2,20 +2,35 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import Loading from "./Loading";
+import PageError from "./Error";
 
 function SingleArticle() {
   const [singleArticle, setSingleArticle] = useState("");
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { article_id } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     async function fetchArticles() {
-      const response = await fetch(
-        `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}`,
-      );
-      const articleJson = await response.json();
-      const { article } = articleJson;
-      setSingleArticle(article);
+      try {
+        const response = await fetch(
+          `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}`,
+        );
+        const articleJson = await response.json();
+        const { article } = articleJson;
+        setSingleArticle(article);
+        if (!response.ok) {
+          throw new Error();
+        }
+      } catch (err) {
+        console.error(err);
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchArticles();
   }, []);
@@ -86,6 +101,13 @@ function SingleArticle() {
   //   }
   //   updateVote();
   // }, [voteCount]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <PageError />;
+  }
 
   return (
     <>

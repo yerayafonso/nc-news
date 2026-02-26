@@ -18,9 +18,6 @@ function ArticleCard(props) {
           <img src={articleImg} className="image" />
           <ul className="card-details">
             <li>
-              <p>ID: {articleId}</p>
-            </li>
-            <li>
               <p>Title: {title}</p>
             </li>
             <li>
