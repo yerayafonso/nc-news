@@ -9,6 +9,7 @@ function UserCard(props) {
   const username = userObj.username;
   const name = userObj.name;
   const avatar = userObj.avatar_url;
+  console.log(avatar);
 
   const handleClick = () => {
     setLoggedInUser({ username, avatar });

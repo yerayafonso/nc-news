@@ -39,12 +39,12 @@ function ArticleList() {
     fetchArticles();
   }, [sortBy, order]);
 
-  if (isLoading === true) {
+  if (isLoading) {
     return <Loading />;
   }
-  console.log(isLoading);
+
   return (
-    <div>
+    <main>
       <div>
         <select
           name="sortByQuery"
@@ -69,10 +69,12 @@ function ArticleList() {
           <option value="DESC">Descending</option>
         </select>
       </div>
-      {articleData.map((object) => {
-        return <ArticleCard articleObj={object} key={object.article_id} />;
-      })}
-    </div>
+      <div className="article-container">
+        {articleData.map((object) => {
+          return <ArticleCard articleObj={object} key={object.article_id} />;
+        })}
+      </div>
+    </main>
   );
 }
 

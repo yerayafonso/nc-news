@@ -4,17 +4,25 @@ function Nav() {
   return (
     <nav>
       <ul>
-        <li>
-          <Link to="/">Home</Link>
+        <li className="nav-li">
+          <Link to="/">
+            <button className="nav-btn">Home</button>
+          </Link>
         </li>
         <li>
-          <Link to="/articles">Articles</Link>
+          <Link to="/articles">
+            <button className="nav-btn">Articles</button>
+          </Link>
         </li>
         <li>
-          <Link to="/users">Users</Link>
+          <Link to="/users">
+            <button className="nav-btn">Users</button>
+          </Link>
         </li>
         <li>
-          <Link to="/topics">Topics</Link>
+          <Link to="/topics">
+            <button className="nav-btn">Topics</button>
+          </Link>
         </li>
       </ul>
     </nav>

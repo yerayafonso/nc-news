@@ -13,9 +13,12 @@ function LogInInfo() {
 
   return (
     <div id="login-info">
-      <p>Logged In as: {loggedInUser.username} </p>
       <img src={loggedInUser.avatar} className="login-img" />
-      <button onClick={handleClick}>Log out!</button>
+      <p>Logged In as: {loggedInUser.username} </p>
+
+      <button onClick={handleClick} className="log-out-btn">
+        Log out!
+      </button>
     </div>
   );
 }
