@@ -38,7 +38,7 @@ function Comments() {
     <>
       {" "}
       <main>
-        <div>
+        <div className="back-post-btn">
           <Link to={`/articles/${article_id}`}>
             <button>Back</button>
           </Link>

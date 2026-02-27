@@ -1,14 +1,18 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios, { HttpStatusCode } from "axios";
 import Loading from "./Loading";
 import PageError from "./Error";
+import formatDate from "../utils/formatDate";
 
 function SingleArticle() {
   const [singleArticle, setSingleArticle] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLikeDisabled, setIsLikeDisabled] = useState(false);
+  const [isDisLikeDisabled, setIsDisLikeDisabled] = useState(false);
+  const [isClearDisabled, setIsClearDisabled] = useState(true);
 
   const { article_id } = useParams();
 
@@ -22,11 +26,15 @@ function SingleArticle() {
         const articleJson = await response.json();
         const { article } = articleJson;
         setSingleArticle(article);
+        console.log("res.ok", response.ok);
+        console.log("error", error);
         if (!response.ok) {
-          throw new Error();
+          console.log("inside if");
+          setError(true);
+          throw new Error("there is an error");
         }
       } catch (err) {
-        console.error(err);
+        console.error("error inside catch", err);
         setError(true);
       } finally {
         setIsLoading(false);
@@ -44,127 +52,119 @@ function SingleArticle() {
   const body = singleArticle.body;
   const votes = singleArticle.votes;
   const commentCount = singleArticle.comment_count;
-  console.log("votes", votes);
 
   const [voteCount, setVoteCount] = useState(0);
 
-  console.log("vote state", voteCount);
-
   function increaseVote(article_id) {
-    setVoteCount((currentVoteCount) => {
-      return currentVoteCount + 1;
-    });
+    setVoteCount(1);
+    setIsLikeDisabled(true);
+    setIsDisLikeDisabled(false);
+    setIsClearDisabled(false);
     axios
       .patch(
         `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}`,
         { inc_votes: 1 },
       )
       .catch(() => {
-        return setVoteCount((currentVoteCount) => {
-          return currentVoteCount - 1;
-        });
+        setIsLikeDisabled(false);
+        setIsDisLikeDisabled(false);
+        return setVoteCount(0);
       });
   }
 
   function decreaseVote(article_id) {
-    setVoteCount((currentVoteCount) => {
-      return currentVoteCount - 1;
-    });
+    setVoteCount(-1);
+    setIsDisLikeDisabled(true);
+    setIsLikeDisabled(false);
+    setIsClearDisabled(false);
+
     axios
       .patch(
         `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}`,
         { inc_votes: -1 },
       )
       .catch(() => {
-        return setVoteCount((currentVoteCount) => {
-          return currentVoteCount + 1;
-        });
+        setIsLikeDisabled(false);
+        setIsDisLikeDisabled(false);
+        return setVoteCount(0);
       });
   }
 
-  // useEffect(() => {
-  //   async function updateVote() {
-  //     const response = await fetch(
-  //       `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}`,
-  //       {
-  //         method: "PATCH",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           changeVote: voteCount,
-  //         }),
-  //       },
-  //     );
-  //     const results = await response.json();
-  //     votes = results.votes;
-  //   }
-  //   updateVote();
-  // }, [voteCount]);
+  function clearVote(article_id) {
+    const num = voteCount === -1 ? 1 : -1;
+    setVoteCount(0);
+    setIsDisLikeDisabled(false);
+    setIsLikeDisabled(false);
+
+    axios.patch(
+      `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}`,
+      { inc_votes: num },
+    );
+  }
 
   if (isLoading) {
     return <Loading />;
   }
   if (error) {
+    console.log(error);
     return <PageError />;
-  }
-
-  return (
-    <>
-      <main>
-        <div>
-          <Link to={"/articles"}>
-            <button>Back</button>
-          </Link>
-          <Link to={`/articles/${article_id}/comments`}>
-            <button>Comments</button>
-          </Link>
-        </div>
-        <div>
-          <div className="card">
-            <img src={articleImg} className="image" />
-            <ul className="card-details">
-              <li>
-                <p>Title: {title}</p>
-              </li>
-              <li>
-                <p>Author: {author}</p>
-              </li>
-              <li>
-                <p>Topic: {topic}</p>
-              </li>
-              <li>
-                <p>Votes: {votes + voteCount}</p>
-                <button
-                  onClick={() => {
-                    increaseVote(article_id);
-                  }}
-                >
-                  +
-                </button>
-                <button
-                  onClick={() => {
-                    decreaseVote(article_id);
-                  }}
-                >
-                  -
-                </button>
-              </li>
-              <li>
-                <p>No. of Comments: {commentCount}</p>
-              </li>
-              <li>
-                <p>Posted: {createdAt}</p>
-              </li>
-              <li>
-                <p>Body: {body}</p>
-              </li>
-            </ul>
+  } else {
+    return (
+      <>
+        <main>
+          <div>
+            <Link to={"/articles"}>
+              <button>Back</button>
+            </Link>
+            <Link to={`/articles/${article_id}/comments`}>
+              <button>Comments</button>
+            </Link>
           </div>
-        </div>
-      </main>
-    </>
-  );
+          <div>
+            <div className="single-article-card">
+              <p>Topic: {topic}</p>
+              <h2>{title}</h2>
+
+              <img src={articleImg} className="single-article-img" />
+
+              <p>Written By: {author}</p>
+              <p>{formatDate(createdAt)}</p>
+
+              <p>Votes: {votes + voteCount}</p>
+              <button
+                onClick={() => {
+                  increaseVote(article_id);
+                }}
+                disabled={isLikeDisabled}
+              >
+                +
+              </button>
+              <button
+                onClick={() => {
+                  decreaseVote(article_id);
+                }}
+                disabled={isDisLikeDisabled}
+              >
+                -
+              </button>
+              <button
+                onClick={() => {
+                  clearVote(article_id);
+                }}
+                disabled={isClearDisabled}
+              >
+                clear
+              </button>
+
+              <p>No. of Comments: {commentCount}</p>
+
+              <p>{body}</p>
+            </div>
+          </div>
+        </main>
+      </>
+    );
+  }
 }
 
 export default SingleArticle;

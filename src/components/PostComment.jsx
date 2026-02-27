@@ -43,13 +43,15 @@ function PostComment() {
       <Link to={`/articles/${article_id}/comments`}>
         <button>Back</button>
       </Link>
-      <p>Username: {loggedInUser.username}</p>
-      <form action={formEndpoint} method="post" onSubmit={handleSubmit}>
-        <label htmlFor="comment-text">Body:</label>
-        <textarea id="comment-text" name="body" type="text" required />
-        <input type="submit" value="post" />
-      </form>
-      <CommentStatus submitComment={submitComment} />
+      <div className="comment-form-container">
+        <p className="logged-in-user">Username: {loggedInUser.username}</p>
+        <form action={formEndpoint} method="post" onSubmit={handleSubmit}>
+          <label htmlFor="comment-text">Body:</label>
+          <textarea id="comment-text" name="body" type="text" required />
+          <input type="submit" value="post" className="submit-btn" />
+        </form>
+        <CommentStatus submitComment={submitComment} />
+      </div>
     </>
   );
 }

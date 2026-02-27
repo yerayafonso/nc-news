@@ -24,7 +24,7 @@ function ArticleCard(props) {
           <h2>{title}</h2>
 
           <div className="article-card-details">
-            <div className="card-meta">
+            <div className="card-details">
               <span>{author}</span>
               <span>{topic}</span>
             </div>
