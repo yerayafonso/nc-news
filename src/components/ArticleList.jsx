@@ -45,7 +45,8 @@ function ArticleList() {
 
   return (
     <main>
-      <div>
+      <div className="dropdown">
+        <label htmlFor="sortByQuery"> Sort By:</label>
         <select
           name="sortByQuery"
           onChange={handleSortChange}
@@ -59,7 +60,7 @@ function ArticleList() {
           <option value="votes"> Votes</option>
           <option value="comment_count"> Comments</option>
         </select>
-
+        <label htmlFor="orderByQuery"> Order:</label>
         <select
           name="orderByQuery"
           onChange={handleOrderChange}

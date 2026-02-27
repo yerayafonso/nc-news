@@ -47,7 +47,7 @@ header {
   height: 150px;
 }
 
-/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div>
 .loader {
   width: fit-content;
   font-weight: bold;
@@ -63,4 +63,4 @@ header {
   to {
     clip-path: inset(0 -1ch 0 0);
   }
-}
+} */

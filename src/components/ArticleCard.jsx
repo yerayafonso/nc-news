@@ -1,11 +1,9 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import formatDate from "../utils/formatDate";
 
 import { UserContext } from "../context/User";
 
 function ArticleCard(props) {
-  const { loggedInUser } = useContext(UserContext);
   const articleObj = props.articleObj;
 
   const articleImg = articleObj.article_img_url;
@@ -20,17 +18,23 @@ function ArticleCard(props) {
   return (
     <>
       <Link to={`/articles/${articleId}`}>
-        <div className="article-card card">
+        <div className="article-card ">
           <img src={articleImg} className="image" />
 
           <h2>{title}</h2>
 
-          <p>Topic: {topic}</p>
-
-          <p>No. of Comments: {commentCount}</p>
-          <div className="card-header-details">
-            <p>Author: {author}</p>
-            <p>{formatDate(createdAt)}</p>
+          <div className="article-card-details">
+            <div className="card-meta">
+              <span>{author}</span>
+              <span>{topic}</span>
+            </div>
+            <div className="card-footer">
+              <span> {formatDate(createdAt)}</span>
+              <div className="card-comments">
+                <img src="../comment.svg" id="comment-pic" />
+                {commentCount}
+              </div>
+            </div>
           </div>
         </div>
       </Link>
