@@ -31,7 +31,7 @@ function Topics() {
 
   return (
     <>
-      <div>
+      <div className="topic-container">
         {topicData.map((object) => {
           return <TopicCard topicObj={object} key={object.slug} />;
         })}

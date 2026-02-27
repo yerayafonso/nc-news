@@ -17,31 +17,6 @@ header {
   margin-left: 15px;
 } */
 
-.user-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.user-card {
-  border: 2px solid red;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin: 10px;
-}
-
-.user-card-details {
-  list-style: none;
-  text-align: center;
-}
-
-.user-image {
-  margin: auto;
-  height: 150px;
-}
-
 .single-user-img {
   margin: auto;
   height: 150px;

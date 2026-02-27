@@ -56,36 +56,38 @@ function ArticlesByTopic() {
   }
   console.log(topicArticles);
   return (
-    <>
-      <div>
-        <div>
-          <select
-            name="sortByQuery"
-            onChange={handleSortChange}
-            defaultValue="created_at"
-          >
-            <option value="author"> Author</option>
-            <option value="title"> Title</option>
+    <main>
+      <div className="dropdown">
+        <label htmlFor="sortByQuery"> Sort By:</label>
+        <select
+          name="sortByQuery"
+          onChange={handleSortChange}
+          defaultValue="created_at"
+        >
+          <option value="author"> Author</option>
+          <option value="title"> Title</option>
 
-            <option value="created_at"> Time Posted</option>
-            <option value="votes"> Votes</option>
-            <option value="comment_count"> Comments</option>
-          </select>
-
-          <select
-            name="orderByQuery"
-            onChange={handleOrderChange}
-            defaultValue="DESC"
-          >
-            <option value="ASC">Ascending</option>
-            <option value="DESC">Descending</option>
-          </select>
-        </div>
+          <option value="topic">Topic</option>
+          <option value="created_at"> Time Posted</option>
+          <option value="votes"> Votes</option>
+          <option value="comment_count"> Comments</option>
+        </select>
+        <label htmlFor="orderByQuery"> Order:</label>
+        <select
+          name="orderByQuery"
+          onChange={handleOrderChange}
+          defaultValue="DESC"
+        >
+          <option value="ASC">Ascending</option>
+          <option value="DESC">Descending</option>
+        </select>
+      </div>
+      <div className="article-container">
         {topicArticles.map((object) => {
           return <ArticleCard articleObj={object} />;
         })}
       </div>
-    </>
+    </main>
   );
 }
 

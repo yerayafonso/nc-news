@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import capitaliseWord from "../utils/capitaliseWord";
 
 function TopicCard(props) {
   const topicObj = props.topicObj;
@@ -8,11 +9,11 @@ function TopicCard(props) {
   return (
     <>
       <Link to={`/topics/${topicObj.slug}`}>
-        <div>
-          <ul className="card-details">
-            <li>Topic: {topicObj.slug}</li>
-            <li>Description: {topicObj.description}</li>
-          </ul>
+        <div className="topic-card-details">
+          <h2>{capitaliseWord(topicObj.slug)}</h2>
+          <div className="topic-desc">
+            <p>{topicObj.description}</p>
+          </div>
         </div>
       </Link>
     </>

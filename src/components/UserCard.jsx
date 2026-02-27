@@ -21,17 +21,17 @@ function UserCard(props) {
         <Link to={`/users/${username}`}>
           <div>
             <img src={avatar} className="user-image" />
-            <ul className="user-card-details">
-              <li>
-                <p>username: {username}</p>
-              </li>
-              <li>
-                <p>Name: {name}</p>
-              </li>
-            </ul>
+
+            <div className="user-card-details">
+              <h3>username: {username}</h3>
+
+              <p>{name}</p>
+            </div>
           </div>
         </Link>
-        <button onClick={handleClick}>Log me in!</button>
+        <button onClick={handleClick} className="login-btn">
+          Log me in!
+        </button>
       </div>
     </>
   );

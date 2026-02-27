@@ -219,3 +219,99 @@ select:focus {
 select:hover {
   border-color: #aaa;
 }
+
+/* Topics */
+
+.topic-card-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  align-items: center;
+  margin: 10px auto;
+  background: #c7efc8;
+  border-radius: 15px;
+  width: 250px;
+  height: max-content;
+  color: black;
+  text-align: center;
+
+  overflow: hidden;
+}
+
+.topic-desc {
+  background-color: #faf7f2;
+  width: 100%;
+}
+
+.topic-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 80%;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+/* Users */
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+.user-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 300px;
+  margin: 10px;
+
+  margin: 10px auto;
+  background: #c7efc8;
+  border-radius: 15px;
+  width: 300px;
+
+  color: black;
+  text-align: center;
+  /* vertical-align: text-top; */
+  overflow: hidden;
+}
+
+.user-card:hover {
+  box-shadow: 0 0 10px black;
+
+  transform: translateY(-3px);
+}
+
+.user-card-details {
+  list-style: none;
+  text-align: center;
+}
+
+.user-image {
+  padding-top: 0.5rem;
+  margin: auto;
+  height: 150px;
+}
+
+.login-btn {
+  margin-bottom: 1rem;
+  border-radius: 25px;
+  padding: 0.5em;
+  border: 1px solid black;
+}
+
+.login-btn:hover {
+  background-color: rgb(0, 74, 0);
+  color: rgb(138, 255, 138);
+  border: 1px solid rgb(0, 74, 0);
+  margin-bottom: 1rem;
+  padding: 0.5em;
+}
