@@ -5,23 +5,28 @@ function Nav() {
     <nav>
       <ul>
         <li className="nav-li">
-          <Link to="/">
-            <button className="nav-btn">Home</button>
+          <Link to="/" className="nav-btn">
+            <span>Home</span>
           </Link>
         </li>
-        <li>
-          <Link to="/articles">
-            <button className="nav-btn">Articles</button>
+        <li className="nav-li">
+          <Link to="/articles" className="nav-btn">
+            <span> Articles</span>
           </Link>
         </li>
-        <li>
-          <Link to="/users">
-            <button className="nav-btn">Users</button>
+        <li className="nav-li">
+          <Link to="/users" className="nav-btn">
+            <span>Users</span>
           </Link>
         </li>
-        <li>
-          <Link to="/topics">
-            <button className="nav-btn">Topics</button>
+        <li className="nav-li">
+          <Link to="/topics" className="nav-btn">
+            <span>Topics</span>
+          </Link>
+        </li>
+        <li className="nav-li">
+          <Link to="/contact" className="nav-btn">
+            <span>Contact</span>
           </Link>
         </li>
       </ul>

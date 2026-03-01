@@ -4,8 +4,8 @@ export const UserContext = createContext();
 
 export const UserProvider = (props) => {
   const [loggedInUser, setLoggedInUser] = useState({
-    username: "Not Logged In",
-    avatar_url: "/home/yerayafonso/Northcoders/frontend/nc-news/image.png",
+    username: "Guest",
+    avatar_url: "https://www.svgrepo.com/show/452030/avatar-default.svg",
   });
   return (
     <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>

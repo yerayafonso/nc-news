@@ -5,7 +5,9 @@ function Header() {
   return (
     <header>
       <div className="title-login">
-        <h1>NC - News</h1>
+        <div></div>
+        <img src="../../logo-white.svg" />
+        {/* <h1>NC - News</h1> */}
         <LogInInfo />
       </div>
       <Nav />

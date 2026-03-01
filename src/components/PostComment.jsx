@@ -39,7 +39,7 @@ function PostComment() {
   };
 
   return (
-    <>
+    <main className="post-comment">
       <Link to={`/articles/${article_id}/comments`}>
         <button>Back</button>
       </Link>
@@ -52,7 +52,7 @@ function PostComment() {
         </form>
         <CommentStatus submitComment={submitComment} />
       </div>
-    </>
+    </main>
   );
 }
 

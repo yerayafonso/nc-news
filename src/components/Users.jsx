@@ -30,11 +30,13 @@ function Users() {
   }
 
   return (
-    <div className="user-list">
-      {userData.map((object) => {
-        return <UserCard userObj={object} key={object.username} />;
-      })}
-    </div>
+    <main>
+      <div className="user-list">
+        {userData.map((object) => {
+          return <UserCard userObj={object} key={object.username} />;
+        })}
+      </div>
+    </main>
   );
 }
 

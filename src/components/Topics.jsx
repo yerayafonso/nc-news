@@ -30,13 +30,13 @@ function Topics() {
   }
 
   return (
-    <>
+    <main>
       <div className="topic-container">
         {topicData.map((object) => {
           return <TopicCard topicObj={object} key={object.slug} />;
         })}
       </div>
-    </>
+    </main>
   );
 }
 

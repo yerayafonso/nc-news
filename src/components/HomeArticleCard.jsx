@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import formatDate from "../utils/formatDate";
 
-import { UserContext } from "../context/User";
-
-function ArticleCard(props) {
+function HomeArticleCard(props) {
   const articleObj = props.articleObj;
 
   const articleImg = articleObj.article_img_url;
@@ -17,8 +15,8 @@ function ArticleCard(props) {
   return (
     <>
       <Link to={`/articles/${articleId}`}>
-        <div className="article-card ">
-          <img src={articleImg} className="image" />
+        <div className="home-large article-card ">
+          <img src={articleImg} className="large-image" />
 
           <h2>{title}</h2>
 
@@ -41,4 +39,4 @@ function ArticleCard(props) {
   );
 }
 
-export default ArticleCard;
+export default HomeArticleCard;

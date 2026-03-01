@@ -1,5 +1,22 @@
+:root {
+  --darkgreen: rgb(0, 74, 0);
+  --off-white: #faf7f2;
+  --darkgreen2: rgb(0, 93, 0);
+  --grey-green: rgb(125, 143, 125);
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
 header {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   width: 100%;
 }
 
@@ -7,20 +24,45 @@ a {
   text-decoration: none;
 }
 
+main {
+  padding-bottom: 55px;
+  /* height: 100vh; */
+  background-color: var(--grey-green);
+}
+
+.home {
+  height: 100vh;
+  text-align: center;
+}
+
+.home > h2 {
+  margin: auto;
+  font-size: 2rem;
+}
+
+header img {
+  height: 120px;
+}
+
 .title-login {
   display: flex;
   justify-content: space-between;
+  background-color: var(--darkgreen);
+  color: white;
 }
 
 .login-img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  border: 3px solid blue;
+  border: 3px solid var(--off-white);
+  background-color: white;
+  box-shadow: 0 0 10px var(--off-white);
 }
 
 #login-info {
   border: 2px solid red;
+  padding-top: 20px;
   display: flex;
   justify-content: space-around;
   width: 350px;
@@ -34,40 +76,58 @@ nav {
   width: 100%;
   /* max-width: 350px; */
   height: max-content;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   padding: 0;
+  background-color: rgb(0, 93, 0);
 }
 
-nav > ul {
+nav ul {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 
-  list-style: none;
   justify-content: space-around;
   height: 100%;
-  max-width: 350px;
-  border: 2px solid green;
+  /* max-width: 350px; */
+
   padding-inline-start: 0;
   margin-block: 0;
   text-decoration: none;
+  text-align: center;
+  justify-content: center;
+}
+
+.nav-li {
+  /* border: 2px solid white; */
+  flex-grow: 1;
+  padding: 0;
 }
 
 .nav-btn {
   list-style: none;
-  margin: 0 0.2rem;
-  padding: 0.2rem;
-  display: block;
+  /* margin: 0 0.2rem; */
+  /* padding: 0.2rem; */
+  display: flex;
   text-decoration: none;
   height: 50px;
   flex-grow: 1;
   font-size: 16px;
-  background-color: white;
+  color: var(--off-white);
+  font-weight: 600;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  /* background-color: white; */
   border: none;
 }
+
+nav span {
+  margin: auto;
+}
 .nav-btn:hover {
-  background-color: #1b1b32;
-  color: white;
+  background-color: var(--off-white);
+  color: var(--darkgreen);
   cursor: pointer;
 }
 
@@ -90,6 +150,48 @@ nav > ul {
     clip-path: inset(0 -1ch 0 0);
   }
 }
+
+.home-large-article {
+  border: 2px solid red;
+  width: 60%;
+  height: 600px;
+}
+
+/* .home-article-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  align-items: center;
+  margin: 10px auto;
+  background: #c7efc8;
+  border-radius: 15px;
+  /* width: 300px; */
+/* width: 100%; 
+  height: 600px;
+  color: black;
+  text-align: center;
+  /* vertical-align: text-top;
+  overflow: hidden;
+} */
+
+/* .small-home-article-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  align-items: center;
+  margin: 10px auto;
+  background: #c7efc8;
+  border-radius: 15px;
+  /* width: 300px; */
+/* width: 100%; 
+  height: 300px;
+  color: black;
+  text-align: center;
+  /* vertical-align: text-top; 
+  overflow: hidden;
+} */
 
 .article-container {
   align-content: center;
@@ -154,6 +256,22 @@ nav > ul {
   object-fit: cover;
 }
 
+.small-image {
+  width: 100%;
+  margin: auto;
+  margin-top: 0;
+  display: block;
+  object-fit: cover;
+}
+
+.large-image {
+  width: 100%;
+  margin: auto;
+  margin-top: 0;
+  display: block;
+  object-fit: cover;
+}
+
 .card-details {
   display: flex;
   justify-content: space-between;
@@ -171,9 +289,15 @@ nav > ul {
   border: 1px solid #ababab;
   border-radius: 8px;
   padding: 0.4rem 0.75rem;
-  margin-bottom: 1rem;
+
   font-size: 0.82rem;
   margin: 0 0.5rem 1rem;
+}
+
+.home-large {
+  height: max-content;
+  width: auto;
+  max-width: 600px;
 }
 
 .card-comments {
@@ -259,6 +383,7 @@ select:hover {
   margin: auto;
   justify-content: space-around;
   gap: 0.5rem;
+  padding-bottom: 50px;
 }
 
 .user-card {
@@ -384,6 +509,10 @@ select:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
+.post-comment {
+  height: 70vh;
+}
+
 .logged-in-user {
   font-size: 0.85rem;
   color: #5a554f;
@@ -434,4 +563,27 @@ textarea:focus {
 
 .submit-btn:hover {
   background: #a8d9aa;
+}
+
+.contact-page {
+  height: 70vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  padding-bottom: 70px;
+  padding-left: 100px;
+}
+
+.linkedin {
+  height: 50px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--darkgreen2);
+  color: white;
+  text-align: center;
+  height: 50px;
 }

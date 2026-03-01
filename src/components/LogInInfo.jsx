@@ -6,14 +6,16 @@ function LogInInfo() {
 
   const handleClick = () => {
     setLoggedInUser({
-      username: "Not Logged In",
-      avatar_url: "/home/yerayafonso/Northcoders/frontend/nc-news/image.png",
+      username: "Guest",
+      avatar_url: "https://www.svgrepo.com/show/452030/avatar-default.svg",
     });
   };
 
+  console.log("logged in user", loggedInUser);
+
   return (
     <div id="login-info">
-      <img src={loggedInUser.avatar} className="login-img" />
+      <img src={loggedInUser.avatar_url} className="login-img" />
       <p>Logged In as: {loggedInUser.username} </p>
 
       <button onClick={handleClick} className="log-out-btn">

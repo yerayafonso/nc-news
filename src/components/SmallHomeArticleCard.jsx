@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import formatDate from "../utils/formatDate";
 
-import { UserContext } from "../context/User";
-
-function ArticleCard(props) {
+function SmallHomeArticleCard(props) {
   const articleObj = props.articleObj;
 
   const articleImg = articleObj.article_img_url;
@@ -17,16 +15,12 @@ function ArticleCard(props) {
   return (
     <>
       <Link to={`/articles/${articleId}`}>
-        <div className="article-card ">
-          <img src={articleImg} className="image" />
+        <div className="small-home article-card ">
+          <img src={articleImg} className="small-image" />
 
           <h2>{title}</h2>
 
           <div className="article-card-details">
-            <div className="card-details">
-              <span>{author}</span>
-              <span>{topic}</span>
-            </div>
             <div className="card-footer">
               <span> {formatDate(createdAt)}</span>
               <div className="card-comments">
@@ -41,4 +35,4 @@ function ArticleCard(props) {
   );
 }
 
-export default ArticleCard;
+export default SmallHomeArticleCard;

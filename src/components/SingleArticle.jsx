@@ -8,7 +8,7 @@ import formatDate from "../utils/formatDate";
 
 function SingleArticle() {
   const [singleArticle, setSingleArticle] = useState("");
-  const [error, setError] = useState(false);
+  const [errorCheck, setErrorCheck] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isLikeDisabled, setIsLikeDisabled] = useState(false);
   const [isDisLikeDisabled, setIsDisLikeDisabled] = useState(false);
@@ -27,21 +27,23 @@ function SingleArticle() {
         const { article } = articleJson;
         setSingleArticle(article);
         console.log("res.ok", response.ok);
-        console.log("error", error);
-        if (!response.ok) {
-          console.log("inside if");
-          setError(true);
+        console.log("error", errorCheck);
+        if (response.ok === false) {
+          // console.log("inside if");
+          // setErrorCheck(true);
           throw new Error("there is an error");
         }
-      } catch (err) {
-        console.error("error inside catch", err);
-        setError(true);
+      } catch {
+        console.log("error inside catch");
+        setErrorCheck(true);
       } finally {
         setIsLoading(false);
       }
     }
     fetchArticles();
   }, []);
+
+  console.log(errorCheck);
 
   const articleImg = singleArticle.article_img_url;
 
@@ -105,66 +107,65 @@ function SingleArticle() {
   if (isLoading) {
     return <Loading />;
   }
-  if (error) {
-    console.log(error);
+
+  if (errorCheck) {
+    console.log(errorCheck);
     return <PageError />;
-  } else {
-    return (
-      <>
-        <main>
-          <div>
-            <Link to={"/articles"}>
-              <button>Back</button>
-            </Link>
-            <Link to={`/articles/${article_id}/comments`}>
-              <button>Comments</button>
-            </Link>
-          </div>
-          <div>
-            <div className="single-article-card">
-              <p>Topic: {topic}</p>
-              <h2>{title}</h2>
-
-              <img src={articleImg} className="single-article-img" />
-
-              <p>Written By: {author}</p>
-              <p>{formatDate(createdAt)}</p>
-
-              <p>Votes: {votes + voteCount}</p>
-              <button
-                onClick={() => {
-                  increaseVote(article_id);
-                }}
-                disabled={isLikeDisabled}
-              >
-                +
-              </button>
-              <button
-                onClick={() => {
-                  decreaseVote(article_id);
-                }}
-                disabled={isDisLikeDisabled}
-              >
-                -
-              </button>
-              <button
-                onClick={() => {
-                  clearVote(article_id);
-                }}
-                disabled={isClearDisabled}
-              >
-                clear
-              </button>
-
-              <p>No. of Comments: {commentCount}</p>
-
-              <p>{body}</p>
-            </div>
-          </div>
-        </main>
-      </>
-    );
   }
+
+  return (
+    <main>
+      <div>
+        <Link to={"/articles"}>
+          <button>Back</button>
+        </Link>
+        <Link to={`/articles/${article_id}/comments`}>
+          <button>Comments</button>
+        </Link>
+      </div>
+      <div>
+        <div className="single-article-card">
+          <p>Topic: {topic}</p>
+          <h2>{title}</h2>
+
+          <img src={articleImg} className="single-article-img" />
+
+          <p>Written By: {author}</p>
+          <p>{formatDate(createdAt)}</p>
+
+          <p>Votes: {votes + voteCount}</p>
+          <button
+            onClick={() => {
+              increaseVote(article_id);
+            }}
+            disabled={isLikeDisabled}
+          >
+            +
+          </button>
+          <button
+            onClick={() => {
+              decreaseVote(article_id);
+            }}
+            disabled={isDisLikeDisabled}
+          >
+            -
+          </button>
+          <button
+            onClick={() => {
+              clearVote(article_id);
+            }}
+            disabled={isClearDisabled}
+          >
+            clear
+          </button>
+
+          <p>No. of Comments: {commentCount}</p>
+
+          <p>{body}</p>
+        </div>
+      </div>
+    </main>
+  );
 }
 
 export default SingleArticle;

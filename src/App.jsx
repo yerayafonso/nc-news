@@ -15,6 +15,8 @@ import SingleUser from "./components/SingleUser";
 import { UserProvider } from "./context/User";
 import Topics from "./components/Topics";
 import ArticlesByTopic from "./components/ArticlesByTopic";
+import Footer from "./components/Footer";
+import Contact from "./components/Contact";
 
 function App() {
   return (
@@ -34,7 +36,9 @@ function App() {
         <Route path="/users/:username" element={<SingleUser />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:topic" element={<ArticlesByTopic />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Footer />
     </UserProvider>
   );
 }
