@@ -11,6 +11,7 @@ function TopicCard(props) {
       <Link to={`/topics/${topicObj.slug}`}>
         <div className="topic-card-details">
           <h2>{capitaliseWord(topicObj.slug)}</h2>
+          {/* <img src=""/> */}
           <div className="topic-desc">
             <p>{topicObj.description}</p>
           </div>

@@ -3,7 +3,7 @@ function Footer() {
     <footer>
       <p>
         {" "}
-        <span>&copy;</span> 2026 and contact
+        <span>&copy;</span> 2026
       </p>
     </footer>
   );

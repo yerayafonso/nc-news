@@ -17,6 +17,7 @@ import Topics from "./components/Topics";
 import ArticlesByTopic from "./components/ArticlesByTopic";
 import Footer from "./components/Footer";
 import Contact from "./components/Contact";
+import About from "./components/About";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:topic" element={<ArticlesByTopic />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
       </Routes>
       <Footer />
     </UserProvider>

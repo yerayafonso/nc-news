@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import formatDate from "../utils/formatDate";
+import commentIcon from "../assets/comment.svg";
+import upArrow from "../assets/upArrow.svg";
+import capitaliseWord from "../utils/capitaliseWord.jsx";
 
 function HomeArticleCard(props) {
   const articleObj = props.articleObj;
@@ -11,6 +14,7 @@ function HomeArticleCard(props) {
   const title = articleObj.title;
   const topic = articleObj.topic;
   const commentCount = articleObj.comment_count;
+  const votes = articleObj.votes;
 
   return (
     <>
@@ -23,12 +27,16 @@ function HomeArticleCard(props) {
           <div className="article-card-details">
             <div className="card-details">
               <span>{author}</span>
-              <span>{topic}</span>
+              <span>{capitaliseWord(topic)}</span>
+              <span>
+                <img src={upArrow} id="upArrow" />
+                {votes}
+              </span>
             </div>
             <div className="card-footer">
               <span> {formatDate(createdAt)}</span>
               <div className="card-comments">
-                <img src="../comment.svg" id="comment-pic" />
+                <img src={commentIcon} id="comment-pic" />
                 {commentCount}
               </div>
             </div>

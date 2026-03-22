@@ -3,6 +3,7 @@ import HomeArticleCard from "./HomeArticleCard";
 import Loading from "./Loading";
 import SmallHomeArticleCard from "./SmallHomeArticleCard";
 import { Link } from "react-router-dom";
+import newspaper from "../assets/newspaper.svg";
 
 function Home() {
   const [articleData, setArticleData] = useState([]);
@@ -35,16 +36,11 @@ function Home() {
 
   return (
     <main className="home">
-      <span className="welcome">
-        <h1>Welcome to Almost News!!</h1>
-        <p>Reporting almost news since... yesterday</p>
-      </span>
+      <span className="welcome"></span>
 
-      <Link to={"/users"}>
-        <button>Sign In</button>
-      </Link>
+      <img src={newspaper} class="home-img" />
 
-      <h2>Latest</h2>
+      {/* <h2>Latest</h2>
       <div className="article-container">
         <div className="home-large-article">
           <HomeArticleCard
@@ -52,7 +48,7 @@ function Home() {
             key={articleData[0].article_id}
           />
         </div>
-      </div>
+      </div> */}
       {/* <Link to={"/topics"}>
         <h2>Topics</h2>
       </Link> */}

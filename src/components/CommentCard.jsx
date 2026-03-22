@@ -10,6 +10,7 @@ function CommentCard(props) {
   const [isDisLikeDisabled, setIsDisLikeDisabled] = useState(false);
   const [isClearDisabled, setIsClearDisabled] = useState(true);
   const [voteCount, setVoteCount] = useState(0);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const commentObj = props.commentObj;
 
@@ -26,11 +27,9 @@ function CommentCard(props) {
         { method: "DELETE" },
       ).then((res) => {
         if (res.ok) {
-          window.location.reload();
+          setIsDeleted(true);
         }
       });
-    } else {
-      console.log("you cannot delete this comment");
     }
   };
 
@@ -74,6 +73,7 @@ function CommentCard(props) {
     setVoteCount(0);
     setIsDisLikeDisabled(false);
     setIsLikeDisabled(false);
+    setIsClearDisabled(true);
 
     axios.patch(
       `https://nc-news-app-5h3i.onrender.com/api/comments/${comment_id}`,
@@ -81,7 +81,13 @@ function CommentCard(props) {
     );
   }
 
-  if (loggedInUser.username === author) {
+  if (isDeleted) {
+    return (
+      <div className="card">
+        <p>Comment has been deleted</p>
+      </div>
+    );
+  } else if (loggedInUser.username === author) {
     return (
       <>
         <div className="card">

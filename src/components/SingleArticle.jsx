@@ -7,12 +7,13 @@ import PageError from "./Error";
 import formatDate from "../utils/formatDate";
 
 function SingleArticle() {
-  const [singleArticle, setSingleArticle] = useState("");
+  const [singleArticle, setSingleArticle] = useState({});
   const [errorCheck, setErrorCheck] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isLikeDisabled, setIsLikeDisabled] = useState(false);
   const [isDisLikeDisabled, setIsDisLikeDisabled] = useState(false);
   const [isClearDisabled, setIsClearDisabled] = useState(true);
+  const [voteCount, setVoteCount] = useState(0);
 
   const { article_id } = useParams();
 
@@ -25,13 +26,15 @@ function SingleArticle() {
         );
         const articleJson = await response.json();
         const { article } = articleJson;
-        setSingleArticle(article);
+
         console.log("res.ok", response.ok);
         console.log("error", errorCheck);
         if (response.ok === false) {
           // console.log("inside if");
           // setErrorCheck(true);
           throw new Error("there is an error");
+        } else {
+          setSingleArticle(article);
         }
       } catch {
         console.log("error inside catch");
@@ -54,8 +57,6 @@ function SingleArticle() {
   const body = singleArticle.body;
   const votes = singleArticle.votes;
   const commentCount = singleArticle.comment_count;
-
-  const [voteCount, setVoteCount] = useState(0);
 
   function increaseVote(article_id) {
     setVoteCount(1);
@@ -97,20 +98,20 @@ function SingleArticle() {
     setVoteCount(0);
     setIsDisLikeDisabled(false);
     setIsLikeDisabled(false);
+    setIsClearDisabled(true);
 
     axios.patch(
       `https://nc-news-app-5h3i.onrender.com/api/articles/${article_id}`,
       { inc_votes: num },
     );
   }
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
   if (errorCheck) {
     console.log(errorCheck);
     return <PageError />;
+  }
+
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (

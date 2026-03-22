@@ -29,6 +29,11 @@ function Nav() {
             <span>Contact</span>
           </Link>
         </li>
+        <li className="nav-li">
+          <Link to="/about" className="nav-btn">
+            <span>About</span>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

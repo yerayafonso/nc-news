@@ -26,6 +26,8 @@ function PostComment() {
         body: JSON.stringify(inputData),
       });
 
+      e.target.body.value = "";
+
       // const postData = await response.json();
 
       if (response.ok) {
@@ -38,6 +40,10 @@ function PostComment() {
     }
   };
 
+  const handleChange = () => {
+    setSubmitComment("");
+  };
+
   return (
     <main className="post-comment">
       <Link to={`/articles/${article_id}/comments`}>
@@ -45,7 +51,12 @@ function PostComment() {
       </Link>
       <div className="comment-form-container">
         <p className="logged-in-user">Username: {loggedInUser.username}</p>
-        <form action={formEndpoint} method="post" onSubmit={handleSubmit}>
+        <form
+          action={formEndpoint}
+          method="post"
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+        >
           <label htmlFor="comment-text">Body:</label>
           <textarea id="comment-text" name="body" type="text" required />
           <input type="submit" value="post" className="submit-btn" />

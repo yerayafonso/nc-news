@@ -1,5 +1,9 @@
 function PageError() {
-  return <p>There was an error </p>;
+  return (
+    <main>
+      <p>There was an error </p>;
+    </main>
+  );
 }
 
 export default PageError;

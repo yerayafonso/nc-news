@@ -1,8 +1,9 @@
 :root {
-  --darkgreen: rgb(0, 74, 0);
+  --darkgreen: rgb(0, 14, 74);
   --off-white: #faf7f2;
-  --darkgreen2: rgb(0, 93, 0);
-  --grey-green: rgb(125, 143, 125);
+  --darkgreen2: rgb(0, 33, 93);
+  --grey-green: rgb(195, 196, 221);
+  --card-bg: rgb(147, 170, 253);
 }
 
 body {
@@ -31,6 +32,7 @@ main {
 }
 
 .home {
+  margin: 0;
   height: 100vh;
   text-align: center;
 }
@@ -40,8 +42,25 @@ main {
   font-size: 2rem;
 }
 
+.home-img {
+  /* height: 300px; */
+  width: 40%;
+  /* width: 800px; */
+  height: auto;
+}
+
+.home h1 {
+  margin: 0;
+}
+
 header img {
   height: 120px;
+}
+
+.tagline {
+  margin: auto 0;
+  font-size: 1.5em;
+  font-style: italic;
 }
 
 .title-login {
@@ -61,15 +80,23 @@ header img {
 }
 
 #login-info {
-  border: 2px solid red;
+  /* border: 2px solid red; */
+  margin-right: 25px;
   padding-top: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
+  gap: 25px;
   width: 350px;
 }
 
 .log-out-btn {
   height: 30%;
+  margin: 0 10px;
+}
+
+.log-out-btn:hover {
+  height: 30%;
+  cursor: pointer;
 }
 
 nav {
@@ -78,7 +105,7 @@ nav {
   height: max-content;
   /* border: 2px solid red; */
   padding: 0;
-  background-color: rgb(0, 93, 0);
+  background-color: var(--darkgreen2);
 }
 
 nav ul {
@@ -132,15 +159,20 @@ nav span {
 }
 
 /* HTML: <div class="loader"></div> */
+.laoding {
+  background-color: var(--grey-green);
+  height: 70vh;
+}
 .loader {
   margin: auto;
-  margin-top: 50px;
+  padding-top: 50px;
   width: fit-content;
   font-weight: bold;
   font-family: monospace;
   font-size: 30px;
   clip-path: inset(0 3ch 0 0);
   animation: l4 1s steps(4) infinite;
+  height: 70vh;
 }
 .loader:before {
   content: "Loading...";
@@ -152,7 +184,7 @@ nav span {
 }
 
 .home-large-article {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 60%;
   height: 600px;
 }
@@ -200,6 +232,7 @@ nav span {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  gap: 25px;
 }
 
 .article-card {
@@ -209,7 +242,8 @@ nav span {
 
   align-items: center;
   margin: 10px auto;
-  background: #c7efc8;
+  /* background: #c7efc8; */
+  background: var(--card-bg);
   border-radius: 15px;
   width: 300px;
   height: 500px;
@@ -246,6 +280,12 @@ nav span {
 #comment-pic {
   height: 15px;
   width: 15px;
+}
+
+#upArrow {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
 }
 
 .image {
@@ -342,6 +382,10 @@ select:hover {
 
 /* Topics */
 
+.topics {
+  height: 70vh;
+}
+
 .topic-card-details {
   display: flex;
   flex-direction: column;
@@ -349,7 +393,8 @@ select:hover {
 
   align-items: center;
   margin: 10px auto;
-  background: #c7efc8;
+  /* background: #c7efc8; */
+  background: var(--card-bg);
   border-radius: 15px;
   width: 250px;
   height: max-content;
@@ -357,6 +402,12 @@ select:hover {
   text-align: center;
 
   overflow: hidden;
+}
+
+.topic-card-details:hover {
+  box-shadow: 0 0 10px black;
+
+  transform: translateY(-3px);
 }
 
 .topic-desc {
@@ -395,7 +446,8 @@ select:hover {
   margin: 10px;
 
   margin: 10px auto;
-  background: #c7efc8;
+  /* background: #c7efc8; */
+  background: var(--card-bg);
   border-radius: 15px;
   width: 300px;
 
@@ -414,6 +466,7 @@ select:hover {
 .user-card-details {
   list-style: none;
   text-align: center;
+  color: black;
 }
 
 .user-image {
@@ -430,11 +483,53 @@ select:hover {
 }
 
 .login-btn:hover {
-  background-color: rgb(0, 74, 0);
-  color: rgb(138, 255, 138);
-  border: 1px solid rgb(0, 74, 0);
+  background-color: var(--darkgreen);
+  /* color: rgb(138, 255, 138); */
+  color: rgb(104, 155, 250);
+  border: 1px solid var(--darkgreen);
   margin-bottom: 1rem;
   padding: 0.5em;
+}
+
+.single-user {
+  display: flex;
+  flex-direction: wrap;
+  justify-content: space-between;
+}
+
+.large-user-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 500px;
+  margin: 10px;
+  height: max-content;
+
+  margin: 10px auto;
+  /* background: #c7efc8; */
+  background: var(--card-bg);
+  border-radius: 15px;
+
+  color: black;
+  text-align: center;
+  /* vertical-align: text-top; */
+  overflow: hidden;
+}
+
+.large-user-image {
+  max-width: 450px;
+  max-height: 400px;
+}
+
+.large-user-card-details {
+  text-align: center;
+  color: black;
+  font-size: 2em;
+}
+
+.small-user-list {
+  margin-right: 25px;
 }
 
 .single-article-card {
