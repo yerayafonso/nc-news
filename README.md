@@ -13,7 +13,7 @@ This is a mock News web application that is built with:
 
 # Live Sites
 
-Link to deployed version: https://nc-news-ya.netlify.app/
+Link to deployed version: https://almost-news-ya.netlify.app/
 
 Backend API - https://nc-news-app-5h3i.onrender.com/api/
 
