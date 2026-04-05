@@ -47,7 +47,7 @@ function PostComment() {
   return (
     <main className="post-comment">
       <Link to={`/articles/${article_id}/comments`}>
-        <button>Back</button>
+        <button class="btns">Back</button>
       </Link>
       <div className="comment-form-container">
         <p className="logged-in-user">Username: {loggedInUser.username}</p>
