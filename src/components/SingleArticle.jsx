@@ -118,10 +118,10 @@ function SingleArticle() {
     <main>
       <div>
         <Link to={"/articles"}>
-          <button>Back</button>
+          <button class="btns">Back</button>
         </Link>
         <Link to={`/articles/${article_id}/comments`}>
-          <button>Comments</button>
+          <button class="btns">Comments</button>
         </Link>
       </div>
       <div>

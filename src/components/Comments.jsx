@@ -40,10 +40,10 @@ function Comments() {
       <main>
         <div className="back-post-btn">
           <Link to={`/articles/${article_id}`}>
-            <button>Back</button>
+            <button class="btns">Back</button>
           </Link>
           <Link to={`/articles/${article_id}/comments/post`}>
-            <button>Post</button>
+            <button class="btns">Post</button>
           </Link>
         </div>
         <div>
